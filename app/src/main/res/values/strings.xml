@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">WorkandStudy_App</string>
+    <string name="hint_week_range">Khoảng tuần học (Ví dụ: 1–15)</string>
+    <string name="facebook_app_id">635403209269739</string>
+    <string name="fb_login_protocol_scheme">fb635403209269739</string>
+    <string name="default_web_client_id">499321066676-natilv2phqq5kiiv5463c82lqf44dpro.apps.googleusercontent.com</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="update_one">Update</string>
+    <string name="startDate">Ngày học: </string>
+    <string name="so0">0</string>
+    <string name="gachCheo">/</string>
+    <string name="ghi_ch">Ghi chú</string>
+    <string name="ti_u">Tiêu đề</string>
+    <string name="h_y">Hủy</string>
+    <string name="th_i_gian">thời gian</string>
+    <string name="_10_45">[10:45]</string>
+    <string name="th_ng_b_o">Thông báo</string>
+    <string name="ch_n_th_ng_b_o_tr_c">Chọn thông báo trước</string>
+    <string-array name="danhmuc">
+        <item>Ngành học</item>
+        <item>Cá nhân</item>
+        <item>Khác</item>
+    </string-array>
+    <string-array name="phanloai">
+        <item>Bài giảng</item>
+        <item>Đề cương</item>
+        <item>Giữa kỳ</item>
+        <item>Cuối kỳ</item>
+        <item>Tài liệu tham khảo</item>
+    </string-array>
+    <string-array name="deltaTime">
+        <item>Đúng giờ</item>
+        <item>5 phút</item>
+        <item>15 phút</item>
+        <item>30 phút</item>
+    </string-array>
+</resources>

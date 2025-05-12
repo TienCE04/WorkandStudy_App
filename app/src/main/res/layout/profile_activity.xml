@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#22A2A6"
+        android:gravity="center"
+        android:paddingTop="40dp"
+        android:paddingBottom="8dp"
+        android:text="Thông tin cá nhân"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+
+        app:cardCornerRadius="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/avt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hinata" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/changePic"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/iconcamera" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/tenSV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@null"
+                    android:hint="Tên sinh viên"
+                    android:maxLines="1" />
+
+                <EditText
+                    android:id="@+id/tenDH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@null"
+                    android:hint="Tên trường đại học"
+                    android:maxLines="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Ngày sinh"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/nSinh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/eMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Số điện thoại"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/sDT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Ngành học"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/nHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Khóa"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/khoa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <Button
+        android:id="@+id/luuInfor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#D044C0EF"
+        android:text="Lưu"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+</LinearLayout>

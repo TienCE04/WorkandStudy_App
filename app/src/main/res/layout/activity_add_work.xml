@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgr">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rounded_background2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Huy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/h_y"
+                    android:textColor="#082AC1"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/Textthem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:text="Lời nhắc mới"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/Them"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:text="Thêm"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="18dp"
+                app:cardCornerRadius="38dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/tieudeWork"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@null"
+                        android:hint="@string/ti_u"
+                        android:textColor="#0890FF"
+                        android:textColorHint="#0890FF"
+                        android:textSize="25sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/line_work" />
+
+                    <EditText
+                        android:id="@+id/ghichuWork"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:background="@null"
+                        android:gravity="top"
+                        android:hint="@string/ghi_ch"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="18dp"
+                app:cardCornerRadius="38dp">
+
+                <EditText
+                    android:id="@+id/timeWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="@string/th_i_gian"
+                    android:textSize="20sp" />
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>

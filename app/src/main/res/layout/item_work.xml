@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <CheckBox
+                android:id="@+id/markWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="Đánh dấu hoàn thành công việc" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tenTask"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:text="Làm bài tập C++"
+                        android:textColor="#0AAADE"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:id="@+id/timeTask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center"
+                        android:text="@string/_10_45"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="16sp"
+                        tools:ignore="RtlHardcoded" />
+
+                    <ImageView
+                        android:id="@+id/importantStar"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="Công việc quan trọng"
+                        android:src="@drawable/ic_star"
+                        app:tint="@color/star_color" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:backgroundTint="#79E7FA"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp">
+
+                        <TextView
+                            android:id="@+id/detailWork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Chi tiết"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="16sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="140dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#79E7FA"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp">
+
+                        <TextView
+                            android:id="@+id/xoaTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Xóa"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="16sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

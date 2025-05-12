@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgr3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tieude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Giải tích 3"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/part1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="35dp"
+                android:text="1. Đề cương và bài giảng"
+                android:textSize="25dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                app:cardBackgroundColor="#6ADAEB"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/baigiang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Bài giảng"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                app:cardBackgroundColor="#6ADAEB"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/decuong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Đề cương"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/part2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="2. Tài liệu giữa kỳ"
+                android:textSize="25dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                app:cardBackgroundColor="#6ADAEB"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/tailieugiuaky"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tài liệu giữa kỳ"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/part3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="3. Tài liệu cuối kỳ"
+                android:textSize="25dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                app:cardBackgroundColor="#6ADAEB"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/tailieucuoiky"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tài liệu cuối kỳ"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/part4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="4. Tài liệu tham khảo"
+                android:textSize="25dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="220dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                app:cardBackgroundColor="#6ADAEB"
+                android:layout_marginBottom="95dp"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/tailieuthamkhao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tài liệu tham khảo"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/xoaMonHoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="340dp"
+                android:text="Xóa"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

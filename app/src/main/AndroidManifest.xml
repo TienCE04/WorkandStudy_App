@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Khai báo quyền truy cập Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WorkandStudy_App"
+        tools:targetApi="31">
+
+        <!-- Khai báo thông tin Facebook App ID -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <!-- Khai báo FacebookActivity để xử lý login -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <!-- Khai báo FacebookContentProvider -->
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider635403209269739"
+            android:exported="true" />
+
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".login.ScreenLogin" />
+        <activity android:name=".main.ScreenMain" />
+        <activity android:name=".signup.ScreenSignUp" />
+        <activity android:name=".school_schedule.ScreenTKB" />
+        <activity android:name=".document.Document_Activity.AddDocumentActivity" />
+        <activity android:name=".document.Document_Activity.Document" />
+        <activity android:name=".document.Document_Activity.FileListActivity" />
+        <activity android:name=".document.Document_Activity.ResourceActivity" />
+        <activity android:name=".todolist.todo_schedule.ScreenTodoList" />
+        <activity android:name=".todolist.todo_schedule.AddTaskActivity" />
+        <activity android:name=".tienich.ScreenUtilities" />
+        <activity android:name=".tienich.PageSchoolActivity" />
+        <activity android:name=".tienich.WebViewActivity" />
+        <activity android:name=".settting.Setting" />
+        <activity android:name=".profile.Profile" />
+
+        <receiver android:name=".tienich.NotificationReceiver" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

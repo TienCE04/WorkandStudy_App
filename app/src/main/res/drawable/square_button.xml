@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#1DB0BF"/>
+    <corners android:radius="35dp"/> <!-- Đặt thành 0 để có góc vuông -->
+</shape>

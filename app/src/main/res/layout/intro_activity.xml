@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.ScreenLogin">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/background" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.295"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+    <TextView
+        android:id="@+id/view_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="LikeU"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/avatarImageView"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/avatarImageView"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
+
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/effect_button"
+        android:gravity="center"
+        android:text="Get Start"
+        android:textColor="@color/blue"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Work and Study"
+        android:textColor="@color/intro_color"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/start"
+        app:layout_constraintStart_toStartOf="@+id/start"
+        app:layout_constraintTop_toBottomOf="@+id/view_intro" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
