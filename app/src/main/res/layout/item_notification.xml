@@ -12,7 +12,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textStyle="bold"
             android:textColor="@color/star_color"
             android:id="@+id/tieuDe"
             android:layout_width="0dp"
@@ -22,13 +21,13 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Chạy bộ"
-            android:textSize="24sp" />
+            android:textSize="23sp" />
 
         <TextView
             android:id="@+id/thoiGian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="06:45"
-            android:textSize="24sp" />
+            android:textSize="23sp" />
     </LinearLayout>
 </LinearLayout>

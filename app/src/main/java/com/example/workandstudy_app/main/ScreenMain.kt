@@ -3,12 +3,12 @@ package com.example.workandstudy_app.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.workandstudy_app.Database.AppDatabase
 import com.example.workandstudy_app.R
 import com.example.workandstudy_app.databinding.ScreenMainBinding
 import com.example.workandstudy_app.document.Document_Activity.Document
@@ -16,8 +16,10 @@ import com.example.workandstudy_app.profile.Profile
 import com.example.workandstudy_app.school_schedule.ScreenTKB
 import com.example.workandstudy_app.settting.Setting
 import com.example.workandstudy_app.tienich.ScreenUtilities
-import com.example.workandstudy_app.todolist.Entity.TasksData
 import com.example.workandstudy_app.todolist.todo_schedule.ScreenTodoList
+import com.example.workandstudy_app.todolist.todo_schedule.SharedViewModelTodo
+import com.example.workandstudy_app.todolist.todo_schedule.TaskRepository
+import com.example.workandstudy_app.todolist.todo_schedule.ViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -26,15 +28,17 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.io.File
+import java.time.LocalDate
 
 class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSelectedListener {
     private lateinit var binding: ScreenMainBinding
     private lateinit var intent: Intent
     private lateinit var adapterNoti: AdapterNoti
-    private lateinit var notificationRecyclerView: RecyclerView
     private lateinit var tabLayout: TabLayout
     private lateinit var db: DatabaseReference
     private val auth = FirebaseAuth.getInstance()
+    private lateinit var viewModel: SharedViewModelTodo
+    private val timeDate = LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,25 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
         setContentView(binding.root)
         tabLayout = binding.tabLayout
         init()
+        initListinScreenMain()
         initNameUser()
+    }
+
+    private fun initListinScreenMain() {
+        val repository = TaskRepository(AppDatabase.getDatabase(this).tasksDao())
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(repository)
+        )[SharedViewModelTodo::class.java]
+        adapterNoti = AdapterNoti()
+        binding.notificationRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.notificationRecyclerView.adapter = adapterNoti
+
+        viewModel.selectedTasks.observe(this) { tasks ->
+            adapterNoti.submitList(tasks)
+        }
+
+        viewModel.loadTasks("${timeDate.dayOfMonth}${timeDate.monthValue}${timeDate.year}%")
     }
 
     //
@@ -65,23 +87,7 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
         binding.documentMain.setOnClickListener(this)
         binding.TodoList.setOnClickListener(this)
         binding.tienich.setOnClickListener(this)
-        adapterNoti = AdapterNoti()
-        val initialTasks = listOf(
-            TasksData(
-                titleTask = "Task 1", timeTask = "10:00",
-                taskIdDate = "",
-                contentTask = "",
-            ),
-            TasksData(
-                titleTask = "Task 2", timeTask = "12:00",
-                taskIdDate = "",
-                contentTask = "",
-            )
-        )
-        adapterNoti.submitList(initialTasks)
-        notificationRecyclerView = binding.notificationRecyclerView
-        notificationRecyclerView.layoutManager = LinearLayoutManager(this)
-        notificationRecyclerView.adapter = adapterNoti
+        binding.detail.setOnClickListener (this)
     }
 
     override fun onClick(v: View?) {
@@ -105,8 +111,13 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
                 intent = Intent(this, ScreenUtilities::class.java)
                 startActivity(intent)
             }
-            R.id.avtTen->{
-                intent= Intent(this, Profile::class.java)
+
+            R.id.avtTen -> {
+                intent = Intent(this, Profile::class.java)
+                startActivity(intent)
+            }
+            R.id.detail ->{
+                intent= Intent(this,ScreenTodoList::class.java)
                 startActivity(intent)
             }
         }
@@ -167,5 +178,6 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
             binding.avt.setImageURI(null)
             binding.avt.setImageURI(Uri.fromFile(avatar))
         }
+        initListinScreenMain()
     }
 }

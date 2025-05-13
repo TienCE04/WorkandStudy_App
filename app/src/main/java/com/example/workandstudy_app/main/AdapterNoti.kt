@@ -10,7 +10,7 @@ import com.example.workandstudy_app.R
 import com.example.workandstudy_app.todolist.Entity.TasksData
 import com.example.workandstudy_app.todolist.todo_schedule.TaskAdapter.DiffCallback
 
-class AdapterNoti() : ListAdapter<TasksData, AdapterNoti.NotiViewHolder>(DiffCallback()) {
+class AdapterNoti : ListAdapter<TasksData, AdapterNoti.NotiViewHolder>(DiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
