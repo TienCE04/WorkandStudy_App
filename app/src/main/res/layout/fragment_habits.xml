@@ -15,21 +15,7 @@
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <SearchView
-                android:id="@+id/searchHabits"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:paddingStart="8dp"
-                android:queryHint="Tìm kiếm tài liệu"
-                />
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
