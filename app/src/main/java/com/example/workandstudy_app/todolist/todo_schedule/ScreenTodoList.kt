@@ -11,6 +11,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.workandstudy_app.R
 import com.example.workandstudy_app.databinding.ScreenTodoBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import androidx.viewpager2.widget.ViewPager2
+
 
 class ScreenTodoList : AppCompatActivity(), View.OnClickListener, FragTasks.OnDaySelectedListener {
 
@@ -34,6 +36,16 @@ class ScreenTodoList : AppCompatActivity(), View.OnClickListener, FragTasks.OnDa
                 else -> "Tasks"
             }
         }.attach()
+
+//        binding.viewTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                when (position) {
+//                    0 -> binding.fab.visibility = View.VISIBLE // Hiển thị Button ở FragTasks
+//                    1, 2 -> binding.fab.visibility = View.GONE // Ẩn Button ở FragHabits và FragHistory
+//                }
+//            }
+//        })
     }
 
     override fun onClick(v: View?) {
@@ -53,7 +65,10 @@ class ScreenTodoList : AppCompatActivity(), View.OnClickListener, FragTasks.OnDa
     override fun onDaySelected(keyID: String) {
         getID = keyID
     }
+
 }
+
+
 
 class ViewPagerAdapterTodo(activity: FragmentActivity) : FragmentStateAdapter(activity) {
     private val fragments = mutableListOf<Fragment>(

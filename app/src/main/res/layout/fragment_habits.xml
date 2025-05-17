@@ -4,31 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+android:background="@drawable/nen"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Just do it"
+        android:textColor="@color/star_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="4dp">
+        android:orientation="horizontal">
 
+        <TextView
 
-    </androidx.cardview.widget.CardView>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Danh sách thói quen gợi ý"
+            android:textSize="22sp" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="18dp"
-        app:cardCornerRadius="38dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dsHabits"
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="550dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#79E7FA"
+
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Thêm"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+
+            android:layout_marginStart="260dp"
+            android:textSize="24sp"
+            android:layout_gravity="bottom"
+            android:text="Good \nthing \ntake\n time"
+            android:fontFamily="@font/fonthh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
 </LinearLayout>

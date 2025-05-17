@@ -288,6 +288,7 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
 
     override fun onCheckChanged(task: TasksData) {
         viewModel.updateTaskFromDialog(task)
+        viewModel.getListTasks7day(getData7Day())
     }
 
     override fun onDetailClicked(task: TasksData) {
@@ -335,10 +336,22 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
 
     override fun onDeleteClicked(task: TasksData) {
         viewModel.deleteTask(task)
+        viewModel.getListTasks7day(getData7Day())
         setWeekView()
     }
 
     override fun onFlagChanged(task: TasksData) {
         viewModel.updateTaskFromDialog(task)
+    }
+
+    //khi co thay doi viec tick hay xoa cap nhat cong viec hoan thanh
+    private fun getData7Day(): MutableList<String> {
+        val chuoiNgay: MutableList<String> = mutableListOf()
+        for (i in 7 downTo 0) {
+            val date = LocalDate.now().minusDays(i.toLong())
+            val pattern = "${date.dayOfMonth}${date.monthValue}${date.year}"
+            chuoiNgay.add(pattern)
+        }
+        return chuoiNgay
     }
 }

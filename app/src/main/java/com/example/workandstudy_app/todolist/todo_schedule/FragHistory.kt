@@ -5,56 +5,130 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.workandstudy_app.Database.AppDatabase
 import com.example.workandstudy_app.R
+import com.example.workandstudy_app.databinding.FragmentHistoryBinding
+import com.example.workandstudy_app.todolist.Entity.TasksData
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FragHistory.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragHistory : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var viewModel: SharedViewModelTodo
+    private lateinit var adapterTaskHis: AdapterTaskHis
+    private lateinit var adapterTaskHisNoComplete: AdapterTaskHis
+    private val timePresent = LocalDate.now()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        initAdapter()
+        initViewModel()
+        //lay data 7 ngay truoc
+        getData7Day()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragHistory.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragHistory().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun getData7Day() {
+        val chuoiNgay: MutableList<String> = mutableListOf()
+        for (i in 7 downTo 0) {
+            val date = timePresent.minusDays(i.toLong())
+            val pattern = "${date.dayOfMonth}${date.monthValue}${date.year}"
+            chuoiNgay.add(pattern)
+        }
+        viewModel.getListTasks7day(chuoiNgay)
+    }
+
+    private fun initAdapter() {
+        adapterTaskHis = AdapterTaskHis()
+        adapterTaskHisNoComplete = AdapterTaskHis()
+        binding.dahoanthanh.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@FragHistory.adapterTaskHis
+        }
+        binding.quahan.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@FragHistory.adapterTaskHisNoComplete
+        }
+    }
+
+    private fun initViewModel() {
+        val repository = TaskRepository(
+            AppDatabase.getDatabase(requireContext()).tasksDao()
+        )//tao doi tuong truy cap csdl
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(repository)
+        )[SharedViewModelTodo::class.java]
+
+        viewModel.selectedTasksHistory.observe(viewLifecycleOwner) { tasks ->
+            val historyItems = mutableListOf<HistoryItem>()
+            val historyItemsNoComplete=mutableListOf<HistoryItem>()
+            val filteredTasks = tasks.filter {
+                it.tick
+            }
+            val filteredTasksNoComplete = tasks.filter {
+                !it.tick
+            }
+
+            for (i in 7 downTo 0) {
+                val date = timePresent.minusDays(i.toLong())
+                val pattern = "${date.dayOfMonth}${date.monthValue}${date.year}"
+                val formatter =
+                    DateTimeFormatter.ofPattern("EEEE, 'ngày' d 'tháng' M", Locale("vi"))
+                val displayDate = date.format(formatter).replaceFirstChar { it.uppercase() }
+                val dayTasks = filteredTasks.filter {
+                    it.taskIdDate.take(pattern.length) == pattern
+                }
+                //cong viec qua han
+                val dayTasksNoComplete=filteredTasksNoComplete.filter {
+                    it.taskIdDate.take(pattern.length) == pattern
+                }
+                if (dayTasks.isNotEmpty()) {
+                    historyItems.add(HistoryItem.Header(date, displayDate))
+                    dayTasks.sortedBy { it.timeTask }.forEach { task ->
+                        historyItems.add(HistoryItem.Task(task))
+                    }
+                }
+                if (dayTasksNoComplete.isNotEmpty()) {
+                    historyItemsNoComplete.add(HistoryItem.Header(date, displayDate))
+                    dayTasksNoComplete.sortedBy { it.timeTask }.forEach { task ->
+                        historyItemsNoComplete.add(HistoryItem.Task(task))
+                    }
                 }
             }
+            adapterTaskHis.submitList(historyItems)
+            if (historyItems.isEmpty()) {
+                binding.dahoanthanh.visibility = View.GONE
+            } else {
+                binding.dahoanthanh.visibility = View.VISIBLE
+            }
+            adapterTaskHisNoComplete.submitList(historyItemsNoComplete)
+            if (historyItemsNoComplete.isEmpty()) {
+                binding.quahan.visibility = View.GONE
+            } else {
+                binding.quahan.visibility = View.VISIBLE
+            }
+        }
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

@@ -37,4 +37,12 @@
         <item>15 phút</item>
         <item>30 phút</item>
     </string-array>
+    <string-array name="habbits">
+        <item>Chạy bộ</item>
+        <item>Uống nước</item>
+        <item>Đọc sách</item>
+        <item>Yoga</item>
+        <item>Vẽ tranh</item>
+        <item>Học kỹ năng mới</item>
+    </string-array>
 </resources>
