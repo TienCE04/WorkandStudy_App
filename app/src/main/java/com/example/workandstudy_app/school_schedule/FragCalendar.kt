@@ -36,7 +36,7 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
     private val auth = FirebaseAuth.getInstance() // Firebase Auth instance
     private var dayPresent = ""
     val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-    private lateinit var calendarAdapter:  CalendarAdapter
+    private lateinit var calendarAdapter: CalendarAdapter
     private val sharedViewModel: SharedViewModel by lazy {
         ViewModelProvider(requireActivity())[SharedViewModel::class.java]
     }
@@ -136,7 +136,7 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
         val daysInMonthArray = ArrayList<DayoftheWeeks>()
         val yearMonth = YearMonth.from(date)
         val daysInMonth = yearMonth.lengthOfMonth()
-        val dayNames = arrayListOf("Sun","Mon","Tue", "Wed", "Thu", "Fri", "Sat")
+        val dayNames = arrayListOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 
         // Add day-of-week headers
         dayNames.forEach { daysInMonthArray.add(DayoftheWeeks(it)) }
@@ -171,7 +171,7 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
 
     // Handle click on a calendar day
     override fun onItemClick(position: Int, dayText: String) {
-        if (dayText.isNotEmpty() && position>6) {
+        if (dayText.isNotEmpty() && position > 6) {
             val selectedDay = dayText.toInt()
             val selectedLocalDate = selectedDate.withDayOfMonth(selectedDay)
             val message = "Selected Date $dayText ${monthYearFromDate(selectedDate)}"
@@ -234,13 +234,34 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
                             }
                         }
                         val adapterList = sortedList.map {
+                            var maMonHoc = ""
+                            var maLop = ""
+                            if (it.classCode == "" && it.subjectHP == "") {
+                                maMonHoc = it.subjectName
+                            } else {
+                                if (it.classCode != "" && it.subjectHP != "") {
+                                    maMonHoc = "${it.classCode}-${it.subjectName}-${it.subjectHP}"
+                                } else {
+                                    if (it.classCode != "") {
+                                        maMonHoc = "${it.classCode}-${it.subjectName}"
+                                    }
+                                    if (it.subjectHP != "") {
+                                        maMonHoc = "${it.subjectName}-${it.subjectHP}"
+                                    }
+                                }
+                            }
+                            if (it.timeInDay == "") {
+                                maLop = it.location
+                            } else {
+                                maLop = "${it.timeInDay},${it.location}"
+                            }
                             DataSubject(
                                 id = it.id,
                                 dateStart = it.dateStart,
                                 time_Start = it.timeStart,
                                 time_End = it.timeEnd,
-                                maMonHoc = "${it.classCode} - ${it.subjectName} - ${it.subjectHP}",
-                                maLop = "${it.timeInDay}, ${it.location}",
+                                maMonHoc = maMonHoc,
+                                maLop = maLop,
                                 tuanHoc = "Week ${it.week}"
                             )
                         }

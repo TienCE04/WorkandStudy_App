@@ -29,4 +29,12 @@ class CheckDateTime {
         }
         return "$hour:$minute"
     }
+
+    fun checkFormaterTime(tg:String): Boolean{
+        return true
+    }
+
+    fun checkDate(date:String): Boolean{
+        return true
+    }
 }

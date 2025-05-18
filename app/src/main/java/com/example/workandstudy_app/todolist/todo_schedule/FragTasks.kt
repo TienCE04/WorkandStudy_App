@@ -60,7 +60,7 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
     private lateinit var noiDung: EditText
     private val calendar = Calendar.getInstance()
     private val checkTime = CheckDateTime()
-    private var countTasks=0
+    private var countTasks = 0
 
     // BroadcastReceiver để nhận thông báo task đã được thêm
     private val taskAddedReceiver = object : BroadcastReceiver() {
@@ -175,11 +175,10 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
 
         viewModel.selectedTasks.observe(viewLifecycleOwner) { tasks ->
             taskAdapter.submitList(tasks)
-            countTasks=tasks.size
-            if(countTasks<=1){
+            countTasks = tasks.size
+            if (countTasks <= 1) {
                 binding.numberTasks.text = "You have ${countTasks} task for today"
-            }
-            else{
+            } else {
                 binding.numberTasks.text = "You have ${countTasks} tasks for today"
             }
             Log.d("FragTasks", "Updated tasks: ${tasks.size}")
@@ -318,10 +317,11 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
                     timeTask = timeTask.text.toString()
                 )
             )
+            viewModel.getListTasks7day(getData7Day())
         }
-            huyTask.setOnClickListener {
-                dialog.dismiss()
-            }
+        huyTask.setOnClickListener {
+            dialog.dismiss()
+        }
         timeTask.setOnClickListener {
             TimePickerDialog(
                 requireContext(), TimePickerDialog.OnTimeSetListener { _, hour, minute ->

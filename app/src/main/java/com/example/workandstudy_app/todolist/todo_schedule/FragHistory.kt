@@ -76,7 +76,7 @@ class FragHistory : Fragment() {
 
         viewModel.selectedTasksHistory.observe(viewLifecycleOwner) { tasks ->
             val historyItems = mutableListOf<HistoryItem>()
-            val historyItemsNoComplete=mutableListOf<HistoryItem>()
+            val historyItemsNoComplete = mutableListOf<HistoryItem>()
             val filteredTasks = tasks.filter {
                 it.tick
             }
@@ -94,7 +94,7 @@ class FragHistory : Fragment() {
                     it.taskIdDate.take(pattern.length) == pattern
                 }
                 //cong viec qua han
-                val dayTasksNoComplete=filteredTasksNoComplete.filter {
+                val dayTasksNoComplete = filteredTasksNoComplete.filter {
                     it.taskIdDate.take(pattern.length) == pattern
                 }
                 if (dayTasks.isNotEmpty()) {
@@ -106,7 +106,7 @@ class FragHistory : Fragment() {
                 if (dayTasksNoComplete.isNotEmpty()) {
                     historyItemsNoComplete.add(HistoryItem.Header(date, displayDate))
                     dayTasksNoComplete.sortedBy { it.timeTask }.forEach { task ->
-                        historyItemsNoComplete.add(HistoryItem.Task(task))
+                        historyItemsNoComplete.add(HistoryItem.TaskNoComplete(task))
                     }
                 }
             }

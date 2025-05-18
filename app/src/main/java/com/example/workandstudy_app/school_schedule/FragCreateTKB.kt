@@ -126,26 +126,26 @@ class FragCreateTKB : Fragment(), View.OnClickListener {
                     binding.tgEnd.requestFocus()
                     return
                 }
-                if (classCode.isEmpty()) {
-                    binding.edtClassCode.error = "Vui lòng nhập mã lớp"
-                    binding.edtClassCode.requestFocus()
-                    return
-                }
+//                if (classCode.isEmpty()) {
+//                    binding.edtClassCode.error = "Vui lòng nhập mã lớp"
+//                    binding.edtClassCode.requestFocus()
+//                    return
+//                }
                 if (subjectName.isEmpty()) {
                     binding.edtSubjectName.error = "Vui lòng nhập tên môn"
                     binding.edtSubjectName.requestFocus()
                     return
                 }
-                if (subjectHP.isEmpty()) {
-                    binding.edtSubjectHP.error = "Vui lòng nhập mã học phần"
-                    binding.edtSubjectHP.requestFocus()
-                    return
-                }
-                if (timeInDay.isEmpty()) {
-                    binding.edtTime.error = "Vui lòng nhập thời gian"
-                    binding.edtTime.requestFocus()
-                    return
-                }
+//                if (subjectHP.isEmpty()) {
+//                    binding.edtSubjectHP.error = "Vui lòng nhập mã học phần"
+//                    binding.edtSubjectHP.requestFocus()
+//                    return
+//                }
+//                if (timeInDay.isEmpty()) {
+//                    binding.edtTime.error = "Vui lòng nhập thời gian"
+//                    binding.edtTime.requestFocus()
+//                    return
+//                }
                 if (location.isEmpty()) {
                     binding.edtLocation.error = "Vui lòng nhập địa điểm"
                     binding.edtLocation.requestFocus()

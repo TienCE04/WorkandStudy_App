@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ListAdapter
 sealed class HistoryItem {
     data class Header(val date: LocalDate, val displayDate: String) : HistoryItem()
     data class Task(val task: TasksData) : HistoryItem()
+    data class TaskNoComplete (val task: TasksData) : HistoryItem()
 }
 
 class AdapterTaskHis : ListAdapter<HistoryItem, RecyclerView.ViewHolder>(HistoryDiffCallback()) {
@@ -52,12 +53,21 @@ class AdapterTaskHis : ListAdapter<HistoryItem, RecyclerView.ViewHolder>(History
                 taskHolder.noiDung.text = task.contentTask
                 taskHolder.timeStart.text = task.timeTask
             }
+            is HistoryItem.TaskNoComplete ->{
+                val taskHolder = holder as TaskViewHolder
+                val task = item.task
+                taskHolder.tieuDe.text = task.titleTask
+                taskHolder.noiDung.text = task.contentTask
+                taskHolder.timeStart.text = task.timeTask
+                taskHolder.tickComplete.setImageResource(R.drawable.baseline_clear_24)
+            }
         }
     }
 
     companion object {
         private const val VIEW_TYPE_HEADER = 1
         private const val VIEW_TYPE_TASK = 2
+        private const val VIEW_TYPE_TASK_NO_COMPLETE=3
     }
 
     //view cho header
@@ -76,6 +86,7 @@ class AdapterTaskHis : ListAdapter<HistoryItem, RecyclerView.ViewHolder>(History
         return when (getItem(position)) {
             is HistoryItem.Header -> VIEW_TYPE_HEADER
             is HistoryItem.Task -> VIEW_TYPE_TASK
+            is HistoryItem.TaskNoComplete -> VIEW_TYPE_TASK_NO_COMPLETE
         }
     }
 
