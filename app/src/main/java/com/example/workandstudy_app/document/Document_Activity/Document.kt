@@ -22,7 +22,6 @@ class Document : AppCompatActivity(), View.OnClickListener{
             tab.text=when(position){
                 0->"Ngành học"
                 1->"Cá nhân"
-                2->"Other"
                 else->"Ngành học"
             }
         }.attach()

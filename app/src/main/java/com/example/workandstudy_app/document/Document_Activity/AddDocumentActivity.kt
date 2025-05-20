@@ -97,7 +97,6 @@ class AddDocumentActivity : AppCompatActivity() {
             R.array.danhmuc,
             android.R.layout.simple_spinner_item
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
         binding.dsDanhmuc.adapter = adapter
 
         adapter = ArrayAdapter.createFromResource(

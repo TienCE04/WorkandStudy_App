@@ -7,7 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class ViewPagerAdapterDocument(activity: FragmentActivity) : FragmentStateAdapter(activity) {
     private val fragments = mutableListOf<Fragment>(
         FragDocMajor(), FragDocMe(),
-        FragDocOther()
     )
 
     override fun getItemCount(): Int = fragments.size

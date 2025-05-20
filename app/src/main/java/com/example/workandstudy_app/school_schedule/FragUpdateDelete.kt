@@ -43,10 +43,10 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
     private lateinit var timeInDay: String
     private lateinit var timeStart: String
     private var scheduleId: String? = null
-    private var calendar= Calendar.getInstance()
+    private var calendar = Calendar.getInstance()
     private var flag = false
     val userID = auth.currentUser?.uid
-    private val checkTime= CheckDateTime()
+    private val checkTime = CheckDateTime()
     private val sharedViewModel: SharedViewModel by lazy {
         ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
     }
@@ -88,18 +88,19 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
                 TimePickerDialog(
                     requireContext(),
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                        binding.timeBatDau.setText(checkTime.checkTime(hour,minute))
+                        binding.timeBatDau.setText(checkTime.checkTime(hour, minute))
                     },
                     calendar.get(java.util.Calendar.HOUR),
                     calendar.get(Calendar.MINUTE),
                     true
                 ).show()
             }
+
             R.id.timeKetThuc -> {
                 TimePickerDialog(
                     requireContext(),
                     TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                        binding.timeKetThuc.setText(checkTime.checkTime(hour,minute))
+                        binding.timeKetThuc.setText(checkTime.checkTime(hour, minute))
                     },
                     calendar.get(java.util.Calendar.HOUR),
                     calendar.get(Calendar.MINUTE),
@@ -158,6 +159,34 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
             keyID += chuoiKey[i]
         }
         getData()
+        val check =
+            checkData(location, subjectName, timeStart, timeEnd)
+        when (check) {
+            1 -> {
+                binding.diaDiem.error = "Vui lòng nhập địa điểm"
+                binding.diaDiem.requestFocus()
+                return
+            }
+
+            2 -> {
+                binding.tenMonHoc.error = "Vui lòng nhập tên môn học"
+                binding.tenMonHoc.requestFocus()
+                return
+            }
+
+            5 -> {
+                binding.timeBatDau.error = "Vui lòng nhập thời gian bắt đầu"
+                binding.timeBatDau.requestFocus()
+                return
+            }
+
+            6 -> {
+                binding.timeKetThuc.error = "Vui lòng nhập thời gian kết thúc"
+                binding.timeKetThuc.requestFocus()
+                return
+            }
+
+        }
         try {
             val updates = mapOf(
                 "classCode" to classCode, "location" to location,
@@ -245,50 +274,17 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
         timeStart = binding.timeBatDau.text.toString()
         timeEnd = binding.timeKetThuc.text.toString()
         timeInDay = binding.timeDay.text.toString()
-        checkData(classCode, location, subjectName, subjectHP, timeInDay, timeStart, timeEnd)
-
     }
 
     private fun checkData(
-        classCode: String, location: String, subjectName: String, subjectHP: String,
-        timeInDay: String, timeStart: String, timeEnd: String
-    ) {
-        if (classCode.isEmpty()) {
-            binding.maclass.error = "Vui lòng nhập mã lớp"
-            binding.maclass.requestFocus()
-            return
-        }
-        if (location.isEmpty()) {
-            binding.diaDiem.error = "Vui lòng nhập địa điểm"
-            binding.diaDiem.requestFocus()
-            return
-        }
-        if (subjectName.isEmpty()) {
-            binding.tenMonHoc.error = "Vui lòng nhập tên môn học"
-            binding.tenMonHoc.requestFocus()
-            return
-        }
-        if (subjectHP.isEmpty()) {
-            binding.maHocPhan.error = "Vui lòng nhập mã học phần"
-            binding.maHocPhan.requestFocus()
-            return
-        }
-        if (timeInDay.isEmpty()) {
-            binding.timeDay.error = "Vui lòng nhập thời gian trong ngày"
-            binding.timeDay.requestFocus()
-            return
-        }
-        if (timeStart.isEmpty()) {
-            binding.timeBatDau.error = "Vui lòng nhập thời gian bắt đầu"
-            binding.timeBatDau.requestFocus()
-            return
-        }
-        if (timeEnd.isEmpty()) {
-            binding.timeKetThuc.error = "Vui lòng nhập thời gian kết thúc"
-            binding.timeKetThuc.requestFocus()
-            return
-        }
-
+        location: String, subjectName: String,
+        timeStart: String, timeEnd: String
+    ): Int {
+        if (location.isEmpty()) { return 1 }
+        if (subjectName.isEmpty()) { return 2 }
+        if (timeStart.isEmpty()) { return 5 }
+        return if (timeEnd.isEmpty()) { 6 }
+        else { 0 }
     }
 
     private suspend fun updateSchedule() {
@@ -301,6 +297,34 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
             return
         }
         getData()
+        val check =
+            checkData(location, subjectName, timeStart, timeEnd)
+        when (check) {
+            1 -> {
+                binding.diaDiem.error = "Vui lòng nhập địa điểm"
+                binding.diaDiem.requestFocus()
+                return
+            }
+
+            2 -> {
+                binding.tenMonHoc.error = "Vui lòng nhập tên môn học"
+                binding.tenMonHoc.requestFocus()
+                return
+            }
+
+            5 -> {
+                binding.timeBatDau.error = "Vui lòng nhập thời gian bắt đầu"
+                binding.timeBatDau.requestFocus()
+                return
+            }
+
+            6 -> {
+                binding.timeKetThuc.error = "Vui lòng nhập thời gian kết thúc"
+                binding.timeKetThuc.requestFocus()
+                return
+            }
+
+        }
         try {
             val updates = mapOf(
                 "classCode" to classCode, "location" to location,
@@ -369,13 +393,39 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
         binding.timeKetThuc.setText(subject.time_End)
         // Phân tách maMonHoc
         val maMonHocParts = subject.maMonHoc.split(" - ")
-        binding.maclass.setText(if (maMonHocParts.size > 0) maMonHocParts[0] else "")
-        binding.tenMonHoc.setText(if (maMonHocParts.size > 1) maMonHocParts[1] else "")
-        binding.maHocPhan.setText(if (maMonHocParts.size > 2) maMonHocParts[2] else "")
+        when (maMonHocParts.size) {
+            1 -> binding.tenMonHoc.setText(maMonHocParts[0])
+            3 -> {
+                binding.maclass.setText(maMonHocParts[0])
+                binding.tenMonHoc.setText(maMonHocParts[1])
+                binding.maHocPhan.setText(maMonHocParts[2])
+            }
+
+            2 -> {
+                if (maMonHocParts[1][maMonHocParts[1].length - 1] == ' ') {
+                    binding.maclass.setText("")
+                    binding.tenMonHoc.setText(maMonHocParts[0])
+                    binding.maHocPhan.setText(maMonHocParts[1])
+                } else {
+                    binding.maclass.setText(maMonHocParts[0])
+                    binding.tenMonHoc.setText(maMonHocParts[1])
+                    binding.maHocPhan.setText("")
+                }
+            }
+        }
         // Phân tách maLop
         val maLopParts = subject.maLop.split(", ")
-        binding.timeDay.setText(if (maLopParts.size > 0) maLopParts[0] else "")
-        binding.diaDiem.setText(if (maLopParts.size > 1) maLopParts[1] else "")
+        when (maLopParts.size) {
+            1 -> {
+                binding.diaDiem.setText(maLopParts[0])
+                binding.timeDay.setText("")
+            }
+
+            2 -> {
+                binding.timeDay.setText(maLopParts[0])
+                binding.diaDiem.setText(maLopParts[1])
+            }
+        }
         binding.tuanHoc.setText(subject.tuanHoc.removePrefix("Week "))
     }
 

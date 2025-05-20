@@ -240,20 +240,20 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
                                 maMonHoc = it.subjectName
                             } else {
                                 if (it.classCode != "" && it.subjectHP != "") {
-                                    maMonHoc = "${it.classCode}-${it.subjectName}-${it.subjectHP}"
+                                    maMonHoc = "${it.classCode} - ${it.subjectName} - ${it.subjectHP}"
                                 } else {
                                     if (it.classCode != "") {
-                                        maMonHoc = "${it.classCode}-${it.subjectName}"
+                                        maMonHoc = "${it.classCode} - ${it.subjectName}"
                                     }
                                     if (it.subjectHP != "") {
-                                        maMonHoc = "${it.subjectName}-${it.subjectHP}"
+                                        maMonHoc = "${it.subjectName} - ${it.subjectHP} "
                                     }
                                 }
                             }
                             if (it.timeInDay == "") {
                                 maLop = it.location
                             } else {
-                                maLop = "${it.timeInDay},${it.location}"
+                                maLop = "${it.timeInDay}, ${it.location}"
                             }
                             DataSubject(
                                 id = it.id,
