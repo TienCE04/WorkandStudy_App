@@ -12,6 +12,10 @@ interface DocumentDao {
 
     @Query("SELECT * FROM tai_lieu WHERE monHocId = :monHocId")
     suspend fun getByMonHocId(monHocId: Int): MutableList<Documents>
+
     @Query("DELETE FROM tai_lieu WHERE id IN (:ids)")
     fun deleteByIds(ids: List<Int>)
+
+    @Query("DELETE FROM tai_lieu WHERE monHocId = :mhID")
+    fun deleteBymonHocID(mhID: Int)
 }

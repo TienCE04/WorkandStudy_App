@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.workandstudy_app.R
+import androidx.core.net.toUri
 
 
 class FileListActivity : AppCompatActivity() {
@@ -77,7 +78,7 @@ class FileListActivity : AppCompatActivity() {
     }
 
     private fun openFile(url: String) {
-        val uri = Uri.parse(url)
+        val uri = url.toUri()
 
         val mimeType = when {
             url.contains("drive.google.com/drive/folders") -> null // là thư mục -> mở trình duyệt

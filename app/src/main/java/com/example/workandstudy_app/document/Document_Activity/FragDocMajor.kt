@@ -27,7 +27,8 @@ class FragDocMajor : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var searchView: SearchView
     private lateinit var adapter: MonHocAdapter
     private var dsMonHocGoc: List<Subjects> = emptyList()
-//    private val searchDoc= SearchDoc.Trie()
+
+    //    private val searchDoc= SearchDoc.Trie()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +38,10 @@ class FragDocMajor : Fragment(), SearchView.OnQueryTextListener {
         recyclerView = view.findViewById(R.id.dsTaiLieu)
         recyclerView.layoutManager = LinearLayoutManager(context)
         searchView = view.findViewById(R.id.searchMonHoc)
-        searchView.setOnQueryTextListener(this)
         loadMonHoc()
+        searchView.setOnQueryTextListener(this)
         return view
     }
-
 
 
     private fun loadMonHoc() {
@@ -78,6 +78,13 @@ class FragDocMajor : Fragment(), SearchView.OnQueryTextListener {
 //            searchDoc.searchPrefix(query)
         }
         adapter.filterList(danhSachLoc)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isAdded) {
+            loadMonHoc()
+        }
     }
 }
 

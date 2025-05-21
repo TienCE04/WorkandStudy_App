@@ -64,14 +64,23 @@ class ResourceActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.xoaMonHoc).setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val monHoc = withContext(Dispatchers.IO) { db.monHocDao().getById(monHocId) }
-                try {
-                    if(monHoc!=null){
-                        db.monHocDao().delete(monHoc)
-                        Toast.makeText(this@ResourceActivity,"Xóa thành công !", Toast.LENGTH_SHORT).show()
+                if (monHoc != null) {
+                    try {
+                        withContext(Dispatchers.IO) {
+                            db.taiLieuDao().deleteBymonHocID(monHocId)
+                            db.monHocDao().delete(monHoc)
+                        }
+                        Toast.makeText(
+                            this@ResourceActivity,
+                            "Xóa thành công !",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        intent.putExtra("update",1)
                         finish()
+
+                    } catch (e: Exception) {
+                        return@launch
                     }
-                }catch (e: Exception){
-                    return@launch
                 }
             }
         }
