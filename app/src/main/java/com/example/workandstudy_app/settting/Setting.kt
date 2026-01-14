@@ -9,16 +9,16 @@ import com.example.workandstudy_app.databinding.SettingActitivityBinding
 import com.example.workandstudy_app.login.ScreenLogin
 
 class Setting : AppCompatActivity(), View.OnClickListener {
-    private lateinit var bindind: SettingActitivityBinding
+    private lateinit var binding: SettingActitivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindind = SettingActitivityBinding.inflate(layoutInflater)
-        setContentView(bindind.root)
+        binding = SettingActitivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         init()
     }
 
     private fun init() {
-        bindind.signOut.setOnClickListener(this)
+        binding.signOut.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {

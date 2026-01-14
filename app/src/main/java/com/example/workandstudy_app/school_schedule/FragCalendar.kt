@@ -295,4 +295,9 @@ class FragCalendar : Fragment(), CalendarAdapter.OnItemListener,
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setMonthView()
+    }
+
 }

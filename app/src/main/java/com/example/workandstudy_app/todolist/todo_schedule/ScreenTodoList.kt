@@ -19,12 +19,12 @@ class ScreenTodoList : AppCompatActivity(), View.OnClickListener, FragTasks.OnDa
     private lateinit var binding: ScreenTodoBinding
     private lateinit var adapter: ViewPagerAdapterTodo
     private var getID: String = ""
+    private lateinit var viewModel: SharedViewModelTodo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ScreenTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.fab.setOnClickListener(this)
         adapter = ViewPagerAdapterTodo(this)
         binding.viewTodo.adapter = adapter
@@ -47,6 +47,7 @@ class ScreenTodoList : AppCompatActivity(), View.OnClickListener, FragTasks.OnDa
 //            }
 //        })
     }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {

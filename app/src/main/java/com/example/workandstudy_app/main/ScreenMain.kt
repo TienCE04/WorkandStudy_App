@@ -40,14 +40,16 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
     private lateinit var viewModel: SharedViewModelTodo
     private val timeDate = LocalDate.now()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ScreenMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tabLayout = binding.tabLayout
-        init()
         initListinScreenMain()
+        init()
         initNameUser()
+
     }
 
     private fun initListinScreenMain() {
@@ -65,6 +67,10 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
         }
 
         viewModel.loadTasks("${timeDate.dayOfMonth}${timeDate.monthValue}${timeDate.year}%")
+        viewModel.getCountTaskTick(false)
+        viewModel.countTasksTick.observe(this) { count ->
+
+        }
     }
 
     //
@@ -87,13 +93,14 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
         binding.documentMain.setOnClickListener(this)
         binding.TodoList.setOnClickListener(this)
         binding.tienich.setOnClickListener(this)
-        binding.detail.setOnClickListener (this)
+        binding.detail.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.calendarTKB -> {
                 intent = Intent(this, ScreenTKB::class.java)
+
                 startActivity(intent)
             }
 
@@ -116,8 +123,9 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
                 intent = Intent(this, Profile::class.java)
                 startActivity(intent)
             }
-            R.id.detail ->{
-                intent= Intent(this,ScreenTodoList::class.java)
+
+            R.id.detail -> {
+                intent = Intent(this, ScreenTodoList::class.java)
                 startActivity(intent)
             }
         }
@@ -180,4 +188,5 @@ class ScreenMain : AppCompatActivity(), View.OnClickListener, TabLayout.OnTabSel
         }
         initListinScreenMain()
     }
+
 }

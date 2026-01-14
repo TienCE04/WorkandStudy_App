@@ -25,4 +25,8 @@ class TaskRepository(private val dao: TasksDao) {
         return dao.getIdCount(pattern)
     }
 
+    suspend fun countTasksTick(tick: Boolean): Int{
+        return dao.getCountTaskTick(tick)
+    }
+
 }

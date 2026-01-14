@@ -39,6 +39,7 @@ class FragDocMajor : Fragment(), SearchView.OnQueryTextListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         searchView = view.findViewById(R.id.searchMonHoc)
         loadMonHoc()
+        recyclerView.addItemDecoration(SpaceItemDecoration(12))
         searchView.setOnQueryTextListener(this)
         return view
     }
@@ -55,7 +56,6 @@ class FragDocMajor : Fragment(), SearchView.OnQueryTextListener {
                 startActivity(intent)
             }
             recyclerView.adapter = adapter
-            recyclerView.addItemDecoration(SpaceItemDecoration(12))
         }
     }
 

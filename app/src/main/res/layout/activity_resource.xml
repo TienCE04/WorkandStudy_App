@@ -7,7 +7,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgr3">
+        android:background="@drawable/bgr3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,8 +138,8 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="22dp"
-                app:cardBackgroundColor="#6ADAEB"
                 android:layout_marginBottom="95dp"
+                app:cardBackgroundColor="#6ADAEB"
                 app:cardCornerRadius="20dp">
 
                 <TextView

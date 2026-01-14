@@ -7,6 +7,7 @@
     <color name="green">#037BB1</color>
     <color name="gray">#888</color>
     <color name="blue2">#0000FF</color>
+    <color name="red">#ff0000</color>
     <color name="star_color">#26A7E6</color> <!-- Vàng cho công việc quan trọng -->
     <color name="star_inactive">#B0B0B0</color> <!-- Xám cho không quan trọng -->
 </resources>

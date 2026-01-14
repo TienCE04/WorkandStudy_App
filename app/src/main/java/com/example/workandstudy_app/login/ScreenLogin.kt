@@ -84,8 +84,8 @@ class ScreenLogin : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         binding.login.setOnClickListener(this)
         binding.signUp.setOnClickListener(this)
-        binding.googleicon.setOnClickListener(this)
         binding.facebookicon.setOnClickListener(this)
+        binding.googleicon.setOnClickListener(this)
         binding.forgotPassword.setOnClickListener(this)
     }
 

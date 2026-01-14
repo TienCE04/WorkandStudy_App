@@ -71,6 +71,7 @@ class FragTasks : Fragment(), CalendarAdapterTodo.OnItemListener, TaskAdapter.Ta
                 if (receivedKeyID.isNotEmpty()) {
                     viewModel.loadTasks("$receivedKeyID%")
                     setWeekView()
+                    viewModel.getListTasks7day(getData7Day())
                 }
             }
         }

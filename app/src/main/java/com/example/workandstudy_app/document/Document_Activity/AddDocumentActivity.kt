@@ -134,5 +134,4 @@ class AddDocumentActivity : AppCompatActivity() {
         }
     }
 
-
 }

@@ -185,7 +185,10 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
                 binding.timeKetThuc.requestFocus()
                 return
             }
-
+        }
+        if(!checkTime.checktimeStartEnd(binding.timeBatDau.text.toString(),binding.timeKetThuc.text.toString())){
+            binding.timeKetThuc.error = "Vui lòng nhập thời gian kết thúc sau thời gian bắt đầu"
+            return
         }
         try {
             val updates = mapOf(
@@ -323,7 +326,10 @@ class FragUpdateDelete : Fragment(), View.OnClickListener {
                 binding.timeKetThuc.requestFocus()
                 return
             }
-
+        }
+        if(!checkTime.checktimeStartEnd(binding.timeBatDau.text.toString(),binding.timeKetThuc.text.toString())){
+            binding.timeKetThuc.error = "Vui lòng nhập thời gian kết thúc sau thời gian bắt đầu"
+            return
         }
         try {
             val updates = mapOf(

@@ -1,6 +1,8 @@
 package com.example.workandstudy_app.todolist.todo_schedule
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.workandstudy_app.Database.AppDatabase
 import com.example.workandstudy_app.R
 import com.example.workandstudy_app.databinding.FragmentHistoryBinding
+import com.example.workandstudy_app.main.ScreenMain
 import com.example.workandstudy_app.todolist.Entity.TasksData
 import java.time.LocalDate
 import java.time.LocalTime
@@ -28,8 +31,7 @@ class FragHistory : Fragment() {
     private lateinit var adapterTaskHis: AdapterTaskHis
     private lateinit var adapterTaskHisNoComplete: AdapterTaskHis
     private val timePresent = LocalDate.now()
-
-
+    var cnt = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -110,6 +112,9 @@ class FragHistory : Fragment() {
                     }
                 }
             }
+
+            cnt = historyItems.size
+            Log.e("soluong", cnt.toString())
             adapterTaskHis.submitList(historyItems)
             if (historyItems.isEmpty()) {
                 binding.dahoanthanh.visibility = View.GONE

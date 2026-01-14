@@ -17,6 +17,8 @@ class SharedViewModelTodo(private val repository: TaskRepository) : ViewModel() 
     private val _selectedTasksHistoryNoComplete = MutableLiveData<List<TasksData>>(emptyList())
     val selectedTasksHistoryNoComplete: LiveData<List<TasksData>> = _selectedTasksHistory
     var countTasks = 0
+    private val _countTasksTick = MutableLiveData<Int>(0)
+    val countTasksTick: LiveData<Int> = _countTasksTick
 
     fun loadTasks(pattern: String) = viewModelScope.launch {
         val tasks = repository.getDsTask(pattern)
@@ -60,6 +62,13 @@ class SharedViewModelTodo(private val repository: TaskRepository) : ViewModel() 
         }
         _selectedTasksHistory.postValue(dsTask7Day.sortedBy { it.timeTask })
         _selectedTasksHistoryNoComplete.postValue(dsTask7Day.sortedBy { it.timeTask })
+    }
+
+    fun getCountTaskTick(tick: Boolean) = viewModelScope.launch {
+        var count = withContext(Dispatchers.IO) {
+            repository.countTasksTick(tick)
+        }
+        _countTasksTick.postValue(count)
     }
 
 }

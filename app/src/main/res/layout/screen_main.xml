@@ -79,6 +79,8 @@
             android:layout_gravity="end"
             android:text="Detail"
             android:textColor="@android:color/holo_blue_light" />
+
+
     </LinearLayout>
 
 

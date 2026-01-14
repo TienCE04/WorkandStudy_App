@@ -29,8 +29,11 @@ interface TasksDao {
     suspend fun getIdCount(pattern: String): Int
 
     @Query("SELECT * FROM data_tasks WHERE taskIdDate LIKE :pattern")
-    suspend fun getListTasks(pattern : String) : List<TasksData>
+    suspend fun getListTasks(pattern: String): List<TasksData>
 
     @Update()
     suspend fun update(task: TasksData)
+
+    @Query("SELECT COUNT(*) FROM data_tasks WHERE tick = :t ")
+    suspend fun getCountTaskTick(t: Boolean): Int
 }
